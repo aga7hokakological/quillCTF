@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "../lib/forge-std/src/console.sol";
+
 interface ICollatz {
   function collatzIteration(uint256 n) external pure returns (uint256);
 }
 
 contract CollatzPuzzle is ICollatz {
   function collatzIteration(uint256 n) public pure override returns (uint256) {
-    if (n % 2 == 0) {
+    if (n % 2 == 0) {   // 1%2 = 1 != 0
       return n / 2;
     } else {
-      return 3 * n + 1;
+      return 3 * n + 1;     // 3 * 1 + 1 = 3 + 1 = 4
     }
   }
 
@@ -20,6 +22,7 @@ contract CollatzPuzzle is ICollatz {
     assembly {
       size := extcodesize(addr)
     }
+    console.log(size);
     require(size > 0 && size <= 32, "bad code size!");
 
     // check results to be matching

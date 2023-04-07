@@ -1,0 +1,40 @@
+// // Interface
+// #define function collatzIteration(uint256) view returns(uint256)    // 0xee924223
+// #define function callMe(address) view returns(bool);
+
+// // Storage
+// #define constant VALUE_LOCATION = FREE_STORAGE_POINTER()
+
+// // collatzIteration
+// #define macro COLLATZ() = takes(0) returns(0) {
+//     0x02                                                    // [0x02]
+//     0x00 calldataload                                       // [value, 0x02]
+//     mod                                                     // [(value % 0x02)]
+//     iszero                                                  // [iszero(value % 0x02)]
+//     even
+//     jumpi
+
+//     0x03                                                    // [0x03, 1]
+//     0x00 calldataload                                       // [value, 0x03, 1]
+//     mul                                                     // [(value * 3), 1]
+//     // 0x01
+//     add
+
+//     0x00 mstore
+//     0x00 0x20 return
+
+//     even:
+//         0x02                                                // [0x02, 0]
+//         0x00 calldataload                                   // [value, 0x02]
+//         div                                                 // [(value / 0x02)]
+// }
+
+// #define macro MAIN() = takes(0) returns(0) {
+//     0x00 calldataload 0xe0 shr
+//     __FUNC_SIG(collatzIteration) eq collatz jumpi
+
+//     0x00 0x00 return
+
+//     collatz:
+//         COLLATZ()
+// }
