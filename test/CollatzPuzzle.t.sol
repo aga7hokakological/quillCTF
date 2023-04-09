@@ -7,20 +7,20 @@ import "../src/CollatzPuzzle.sol";
 import "../src/CollatzPuzzleSolution.huff";
 
 contract CollatzPuzzleTest is Test {
-    // CollatzPuzzle collatz;
-    // CollatzPuzzleSolution solution;
+    CollatzPuzzle public collatz;
+    address public solution;
 
-    // function setUp() external {
-    //     collatz = new CollatzPuzzle();
-    //     solution = CollatzPuzzleSolution(HuffDeployer.deploy("CollatzPuzzleSolution"));
-    // }
+    function setUp() external {
+        collatz = new CollatzPuzzle();
+        solution = HuffDeployer.deploy("CollatzPuzzleSolution");
+    }
 
-    // function test_callMe() external {
-    //     // vm.prank(address(collatz));
-    //     collatz.callMe(address(collatz));
-    // }
+    function test_callMe() external {
+        // vm.prank(address(collatz));
+        collatz.callMe(address(solution));
+    }
 }
 
-// interface CollatzPuzzle {
-//     function collatzIteration(uint256) external returns(uint256);
-// }
+interface CollatzPuzzle {
+    function collatzIteration(uint256) external returns(uint256);
+}
